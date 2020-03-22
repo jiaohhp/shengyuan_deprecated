@@ -1,0 +1,24 @@
+参考：https://doc.qt.io/archives/qt-4.8/qt-embedded-crosscompiling.html
+源码: http://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz
+
+步骤：
+1. 进入源码目录 qt-everywhere-opensource-src-4.8.7/mkspecs/qws
+2. 复制目录 linux-arm-gnueabi-g++ 为 arm-hisiv100-linux-g++
+3. 替换 arm-hisiv100-linux-g++/qmake.conf 中的 arm-none-linux-gnueabi 为 arm-hisiv100-linux
+4. 添加 编译器选项 至 load(qt_config)之前
+   QMAKE_CFLAGS += -march=armv7-a -mcpu=cortex-a9 -mfloat-abi=softfp -mfpu=vfpv3-d16
+   QMAKE_CXXFLAGS += -march=armv7-a -mcpu=cortex-a9 -mfloat-abi=softfp -mfpu=vfpv3-d16
+5. 配置qt编译选项
+   进入源码目录 qt-everywhere-opensource-src-4.8.7 ，执行命令：
+   静态最小库，支持异常、STL，不支持多媒体、图片、webkit、DBUS、GUI等不常用组件。
+./configure -embedded arm -xplatform qws/arm-hisiv100-linux-g++ --prefix=/opt/qt-hisiv100 \
+        -release -opensource -confirm-license -static -fast -no-largefile \
+        -no-qt3support -no-nis -no-cups -no-pch -no-dbus -no-freetype \
+        -no-multimedia -no-audio-backend -no-phonon -no-phonon-backend -no-svg -no-webkit \
+        -no-javascript-jit -no-script -no-scripttools -no-declarative \
+        --no-gif -no-libtiff -no-libpng -no-libmng -no-libjpeg -no-openssl \
+        -nomake tools -nomake examples -nomake demos -nomake docs \
+        -no-gui -no-accessibility 
+
+   
+   
