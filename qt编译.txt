@@ -19,6 +19,9 @@
         --no-gif -no-libtiff -no-libpng -no-libmng -no-libjpeg -no-openssl \
         -nomake tools -nomake examples -nomake demos -nomake docs \
         -no-gui -no-accessibility 
+        
+6. 编译过程中不会出错，但建立一个helloworld程序链接时出错：__tls_xx错误。
+    需要修改src/corelib/thread/qthread_unix.cpp代码
 
    
    
