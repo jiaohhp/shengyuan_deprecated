@@ -1,4 +1,6 @@
 1. 主分支只存放文档
+2020-04-06
+    添加海思3516的适用于cmake的交叉编译配置文件
 
 2020-03-28
     代码备份 链接：https://pan.baidu.com/s/1UejwVAP4giKFOP82_pY0eQ     提取码：kec2
